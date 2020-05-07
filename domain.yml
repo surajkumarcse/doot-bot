@@ -5,10 +5,11 @@ intents:
   - deny
   - mood_great
   - mood_unhappy
-  - bot_challenge
   - inform
   - search_provider
   - thanks
+  - bot_challenge:
+      triggers: action_is_bot
 
 entities:
   - facility_type
@@ -31,8 +32,10 @@ actions:
   - utter_iamabot
   - utter_confusion
   - utter_how_can_i_help
-  - action_facility_search
   - utter_ask_location
+  - action_facility_search
+  - action_is_bot
+  
 
 responses:
   utter_greet:
@@ -71,6 +74,7 @@ responses:
   utter_iamabot:
   - text: "I am doot, personal assistant of Suraj"
   - text: "doot, personal assistant of Suraj"
+  - text: "Humans call me different names - bot, chatbot, an assistant. But what matters the most is that I am ready to help you in behalf of Suraj!"
 
   utter_confusion:
   - text: "I can't understand it, try to avoid typos, sarcasm, incomplete word or hindi word."

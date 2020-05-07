@@ -11,9 +11,11 @@ from typing import Any, Text, Dict, List
 
 from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
-from rasa_sdk.events import SlotSet
+from rasa_sdk.events import SlotSet, UserUtteranceReverted
 
-#
+# from rasa_core.events import (UserUtteranceReverted, UserUttered,)
+
+# Invokes when facility search is done by user
 class ActionFacilitySearch(Action):
 
     def name(self) -> Text:
@@ -30,3 +32,14 @@ class ActionFacilitySearch(Action):
         dispatcher.utter_message("Here is the address of the {}:{} and location is {}".format(facility, address, userLocation))
 
         return [SlotSet("address", address)]
+
+# Invokes as a trigger when bot_challenge intent is triggered
+class ActionIsBot(Action):
+    """Revertible mapped action for utter_is_bot"""
+
+    def name(self):
+        return "action_is_bot"
+    
+    def run(self, dispatcher, tracker, domain):
+        dispatcher.utter_message(template="utter_iamabot")
+        return [UserUtteranceReverted()]
