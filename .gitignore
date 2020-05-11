@@ -1,4 +1,5 @@
 botenv
-__pycache__
-models
 results
+requirements.txt
+tests
+__pycache__
